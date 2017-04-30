@@ -118,7 +118,7 @@ def timed_job():
     horse_entity = create_horse_entity(horses)
     track_entity = create_track_entities(tracks)
     match_entity = create_match_entity(matches)
-    print "horse_entity", "track_entity", "match_entity"
+    print horse_entity, track_entity, match_entity
     horses = requests.put(url=base_url, headers=headers, data=horse_entity)
     tracks = requests.put(url=base_url, headers=headers, data=track_entity)
     matches = requests.put(url=base_url, headers=headers, data=match_entity)
