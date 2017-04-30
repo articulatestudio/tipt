@@ -2,9 +2,11 @@ import pymongo
 from pymongo import MongoClient
 import json
 
-DATABASE_NAME = 'admin'
-DATABASE_Addr = '46.101.39.247'
-DATABASE_PORT = 27017
+DATABASE_NAME = 'heroku_cllxmt07'
+DATABASE_Addr = 'ds127451-a0.mlab.com:27451'
+DATABASE_PORT = 27451
+DATABASE_USER = 'lewis'
+DATABASE_PASSWORD = 'lewis'
 
 
 #  Connect to Mongodb on digital Ocean.
