@@ -1,12 +1,9 @@
 import pymongo
 from pymongo import MongoClient
 import json
-
 DATABASE_NAME = 'admin'
 DATABASE_Addr = '46.101.39.247'
 DATABASE_PORT = 27017
-
-
 #  Connect to Mongodb on digital Ocean.
 
 
@@ -45,7 +42,6 @@ class mongodb():
         tournaments_data = []
         horses_data = []
         predict_data = []
-
         for col in collections:
 
             tmp = []
@@ -62,15 +58,7 @@ class mongodb():
             elif "predict" in col:
                 predict_data = tmp
 
-        json_data = {'races_data': races_data,
-                     'odds_data': odds_data,
-                     'tournaments': tournaments_data,
-                     'horses_data': horses_data,
-                     'predicts_data': predict_data
-                     }
-        # print('json_data:  {}'.format(json_data))
-        return json_data
-
+        return races_data, odds_data, tournaments_data, horses_data, predict_data
 
 mongo = mongodb()
 

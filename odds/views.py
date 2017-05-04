@@ -57,13 +57,7 @@ betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
 
 
 collections = mongo.get_collections(DATABASE_NAME)
-all_data = mongo.get_data(collections=collections)
-
-races_data = all_data['races_data']
-odds_data = all_data['odds_data']
-tournaments_data = all_data['tournaments']
-horses_data = all_data['horses_data']
-predicts_data = all_data['predicts_data']
+races_data, odds_data, tournaments_data, horses_data, predicts_data = mongo.get_data(collections=collections)
 
 
 # def update_data():
@@ -402,7 +396,7 @@ def showTimes(data):
 
 
 def giveSuggestions(data):
-
+    horse_emoji = u"\U0001F40E"
     match = data['matches']
     print("match is " + match)
     print("predict_data: {} ".format(predicts_data))
@@ -414,7 +408,7 @@ def giveSuggestions(data):
             print('race: {}'.format(item['Which racecourse?']))
             if item['Which racecourse?'] + ' ' + item['Race Time'] == match:
                 try:
-                    predictions = item["Horse Name"] + " is my pick in the " + item["Race Time"] + " at " + item['Which racecourse?'] + "\n"
+                    predictions = item["Horse Name"] + " is my pick in the " + item["Race Time"] + " at " + item['Which racecourse?'] + "\n\n"
                     predictions = predictions + item["Your recommendation text"]
                     print('recommendation: {}'.format(predictions))
                 except Exception as e:
