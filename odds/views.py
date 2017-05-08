@@ -246,8 +246,6 @@ def processHorseRequest(parameters):
 
         quick_replies = []
         reply = text_quick_reply(title="Ask a human instead", payload="r_human")
-                reply = text_quick_reply(title="Ask a human instead", payload="r_human")
-
         quick_replies.append(reply)
 
 
