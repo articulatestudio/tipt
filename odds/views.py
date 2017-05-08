@@ -356,7 +356,7 @@ def showTimes(data):
     print('trackid: {}'.format(track_id))
 
     if track_id == '':
-        speech = "I don’t think there is any racing there today. There is racing at:\n\n"
+        speech = "I see we've got racing from:\n\n"
 
         quick_replies = []
 
@@ -383,7 +383,7 @@ def showTimes(data):
             return final_data
 
         else:
-            speech = "I don’t think there is any racing there today. There is racing at:\n\n"
+            speech = "I can see we have racing from:\n\n"
 
             quick_replies = []
 
