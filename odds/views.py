@@ -88,8 +88,10 @@ def replyhook(request):
 @csrf_exempt
 def webhook(request):
     if request.method == 'POST':
+        print("Data: len()=tournaments_data" + str(len(tournaments_data)))
         body_unicode = request.body.decode('utf-8')
         request_body = json.loads(body_unicode)
+        print("request body: " + str(body_unicode))
         res = action(request_body)
         print ("api-response: ")
         api_response = JsonResponse(res)
@@ -345,7 +347,7 @@ def showTimes(data):
         track_id = filter(lambda item: item['name'] == track and str(item['date']) >= current_time['iso_date'], tournaments_data)[0]['tournament_id']
         print ('track_id: {}'.format(track_id))
     except Exception as e:
-        print ('Python 3 : {}'.format(e))
+        print ('Python 3 exception: {}'.format(e))
         try:
             track_id = next(filter(lambda item: item['name'] == track and str(item['date']) >= current_time['iso_date'], tournaments_data))['tournament_id']
         except Exception as e:
@@ -451,7 +453,7 @@ def default_fallback():
 
 def action(data):
     parameters = data['result']['parameters']
-
+    print("action - parameters: " + str(parameters))
     if data['result']['metadata']['intentName'] == 'test':
         return processData(getnextgame())
     elif data['result']['action'] == 'HorseOdds':
