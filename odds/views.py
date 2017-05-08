@@ -107,9 +107,9 @@ def get_current_time():
     Get Current time
     """
     print((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
-    iso_date = (datetime.now(timezone.utc) + timedelta(hours=-22)).isoformat()
+    iso_date = (datetime.now(timezone.utc) + timedelta(hours=-12)).isoformat()
     print('iso_date: {}'.format(iso_date))
-    date = ((datetime.now(timezone.utc) + timedelta(hours=-22)).strftime("%Y%m%d%H%M"))
+    date = ((datetime.now(timezone.utc) + timedelta(hours=12)).strftime("%Y%m%d%H%M"))
     year = date[:4]
     month_day = date[4:8]
     hour = date[8:10]
