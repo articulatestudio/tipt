@@ -248,9 +248,7 @@ def processHorseRequest(parameters):
         reply = text_quick_reply(title="Get a human to figure it out", payload="r_human")
         quick_replies.append(reply)
 
-        for course in courses:
-            reply = text_quick_reply(title=course, payload=course)
-            quick_replies.append(reply)
+    
 
         final_data = apiai_facebook_quick_reply(text=speech, quick_replies=quick_replies)
 
