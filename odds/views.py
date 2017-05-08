@@ -215,7 +215,7 @@ def on_courses(current_time):
     """
     courses = []
     for item in tournaments_data:
-        if str(item['date']) <= str(current_time['iso_date']):
+        if str(item['time']) <= str(current_time['iso_date']):
             continue
         elif item['name'] not in courses:
             courses.append(item['name'])
@@ -270,7 +270,7 @@ def processHorseRequest(parameters):
         return final_data
 
 
-def processFootballRequest(parameters):
+ def processFootballRequest(parameters):
     match = parameters['TeamA'] + ' v ' + parameters['TeamB']
     teamA = parameters['TeamA']
     teamB = parameters['TeamB']
