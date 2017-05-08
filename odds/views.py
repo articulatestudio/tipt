@@ -107,7 +107,7 @@ def get_current_time():
     Get Current time
     """
     print((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
-    iso_date = (datetime.now(timezone.utc) + timedelta(hours=24)).isoformat()
+    iso_date = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
     print('iso_date: {}'.format(iso_date))
     date = ((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
     year = date[:4]
@@ -215,7 +215,7 @@ def on_courses(current_time):
     """
     courses = []
     for item in tournaments_data:
-        if str(item['date']) >= str(current_time['iso_date']):
+        if str(item['date']) <= str(current_time['iso_date']):
             continue
         elif item['name'] not in courses:
             courses.append(item['name'])
