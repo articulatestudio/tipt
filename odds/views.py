@@ -106,10 +106,10 @@ def get_current_time():
     """
     Get Current time
     """
-    print((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
-    iso_date = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
+    print((datetime.now(timezone.utc) + timedelta(hours=12)).strftime("%Y%m%d%H%M"))
+    iso_date = (datetime.now(timezone.utc) + timedelta(hours=12)).isoformat()
     print('iso_date: {}'.format(iso_date))
-    date = ((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
+    date = ((datetime.now(timezone.utc) + timedelta(hours=12)).strftime("%Y%m%d%H%M"))
     year = date[:4]
     month_day = date[4:8]
     hour = date[8:10]
@@ -417,7 +417,7 @@ def giveSuggestions(data):
                     predictions = ""
 
         if predictions == "":
-            speech = "It looks a tough field to split. My tip in this race is to keep your money in your pocket"
+            speech = "It looks a tough field to split. My tip in this race is to keep your money in your pocket!"
         else:
             speech = speech + horse_emoji
             print('predictions: {}'.format(predictions))
