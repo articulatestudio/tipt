@@ -245,10 +245,12 @@ def processHorseRequest(parameters):
         speech = "I'm struggling with that one. It could be that you made a typo, the race has already started or the horse isn't running today.:\n\n"
 
         quick_replies = []
-        reply = text_quick_reply(title="Get a human to figure it out", payload="r_human")
+        reply = text_quick_reply(title="Ask a human instead", payload="r_human")
+                reply = text_quick_reply(title="Ask a human instead", payload="r_human")
+
         quick_replies.append(reply)
 
-    
+
 
         final_data = apiai_facebook_quick_reply(text=speech, quick_replies=quick_replies)
 
