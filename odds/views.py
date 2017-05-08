@@ -417,7 +417,7 @@ def giveSuggestions(data):
                     predictions = ""
 
         if predictions == "":
-            speech = "I could not find predictions for that race empty"
+            speech = "It looks a tough field to split. My tip in this race is to keep your money in your pocket"
         else:
             speech = speech + horse_emoji
             print('predictions: {}'.format(predictions))
