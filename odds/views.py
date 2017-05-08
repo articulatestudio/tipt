@@ -242,10 +242,11 @@ def processHorseRequest(parameters):
                 vendors.append(random_emoji(item['name']) + " " + item['name'] + " " + convert_dec_frac(item['odd']))
 
     if len(vendors) == 0:
-        speech = "Sorry I don’t recognise that horse name, perhaps its not running today or you made a typo. " \
-                 "Let me know which course you are looking for:\n\n"
+        speech = "I'm struggling with that one. It could be that you made a typo, the race has already started or the horse isn't running today.:\n\n"
 
         quick_replies = []
+        reply = text_quick_reply(title="Get a human to figure it out", payload="r_human")
+        quick_replies.append(reply)
 
         for course in courses:
             reply = text_quick_reply(title=course, payload=course)
