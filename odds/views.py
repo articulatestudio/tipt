@@ -344,12 +344,12 @@ def showTimes(data):
     courses = on_courses(current_time=current_time)
     print('courses: {}'.format(courses))
     try:
-        track_id = filter(lambda item: item['name'] == track and str(item['date']) < current_time['iso_date'], tournaments_data)[0]['tournament_id']
+        track_id = filter(lambda item: item['name'] == track and str(item['date']) >= current_time['iso_date'], tournaments_data)[0]['tournament_id']
         print ('track_id: {}'.format(track_id))
     except Exception as e:
         print ('Python 3 exception: {}'.format(e))
         try:
-            track_id = next(filter(lambda item: item['name'] == track and str(item['date']) < current_time['iso_date'], tournaments_data))['tournament_id']
+            track_id = next(filter(lambda item: item['name'] == track and str(item['date']) >= current_time['iso_date'], tournaments_data))['tournament_id']
         except Exception as e:
             print('Exception: {}'.format(e))
             track_id = ''
