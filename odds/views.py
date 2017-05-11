@@ -215,11 +215,12 @@ def on_courses(current_time):
     """
     courses = []
     for item in tournaments_data:
-        if str(item['date']) >= str(current_time['iso_date']):
+        if str(item['date']) <= str(current_time['iso_date']):
             continue
         elif item['name'] not in courses:
             courses.append(item['name'])
     return courses
+
 
 
 
