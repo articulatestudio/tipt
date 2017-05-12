@@ -106,7 +106,7 @@ def get_current_time():
     """
     Get Current time
     """
-    print((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
+    print((datetime.now(timezone.utc) + timedelta(hours=24)).strftime("%Y%m%d%H%M"))
     iso_date = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
     print('iso_date: {}'.format(iso_date))
     date = ((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
