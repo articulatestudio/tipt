@@ -374,7 +374,7 @@ def showTimes(data):
 
             if item['tournament_id'] == track_id:
                 match = track + " " + item['time']
-                quick_reply = text_quick_reply(match, "get " + match)
+                quick_reply = text_quick_reply(match, "next-race-postback " + match)
                 replies.append(quick_reply)
 
         if len(replies) > 0:
