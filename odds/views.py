@@ -358,7 +358,7 @@ def showTimes(data):
     print('trackid: {}'.format(track_id))
 
     if track_id == '':
-        speech = "I see we've got racing from:\n\n"
+        speech = "Racing today comes from:\n\n"
 
         quick_replies = []
 
