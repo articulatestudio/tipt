@@ -411,7 +411,7 @@ def giveSuggestions(data):
             print('race: {}'.format(item['Which racecourse?']))
             if item['Which racecourse?'] + ' ' + item['Race Time'] == match:
                 try:
-                    predictions = item["Horse Name"] + " is my pick in the " + item["Race Time"] + " at " + item['Which racecourse?'] + "\n\n"
+                    predictions = "In the " + item["Race Time"] + " at " + item['Which racecourse?'] + "\n\n"
                     predictions = predictions + item["Your recommendation text"]
                     print('recommendation: {}'.format(predictions))
                 except Exception as e:
