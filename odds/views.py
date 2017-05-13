@@ -420,7 +420,7 @@ def giveSuggestions(data):
         if predictions == "":
             speech = "It looks a tough field to split. My tip in this race is to keep your money in your pocket!"
         else:
-            speech = speech + 
+            speech = speech 
             print('predictions: {}'.format(predictions))
 
             speech = speech + predictions + "\n"
