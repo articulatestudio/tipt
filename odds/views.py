@@ -411,12 +411,7 @@ def giveSuggestions(data):
             print('race: {}'.format(item['Which racecourse?']))
             if item['Which racecourse?'] + ' ' + item['Race Time'] == match:
                 try:
-                    predictions = predictions + item["Horse Name"] + item["Your recommendation text"]
-
-                    quick_replies = []
-                    reply = text_quick_reply(title="Ask a human to look", payload="r_human")
-                    quick_replies.append(reply)
-
+                    predictions = predictions + item["Your recommendation text"]
                     print('recommendation: {}'.format(predictions))
                 except Exception as e:
                     print('give suggestion error: {}'.format(e))
@@ -429,10 +424,7 @@ def giveSuggestions(data):
             print('predictions: {}'.format(predictions))
 
             speech = speech + predictions + "\n"
-
-        final_data = apiai_facebook_quick_reply(text=speech, quick_replies=quick_replies)
-
-        return final_data
+        return speech
 
     except Exception as e:
         print ('giveSuggestions Error: {}'.format(e))
