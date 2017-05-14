@@ -416,7 +416,7 @@ def giveSuggestions(data):
                     quick_replies = []
                     reply = text_quick_reply(title="Ask a human to look", payload="r_human")
                     quick_replies.append(reply)
-                    
+
                     print('recommendation: {}'.format(predictions))
                 except Exception as e:
                     print('give suggestion error: {}'.format(e))
@@ -429,7 +429,10 @@ def giveSuggestions(data):
             print('predictions: {}'.format(predictions))
 
             speech = speech + predictions + "\n"
-        return speech
+
+        final_data = apiai_facebook_quick_reply(text=speech, quick_replies=quick_replies)
+
+        return final_data
 
     except Exception as e:
         print ('giveSuggestions Error: {}'.format(e))
