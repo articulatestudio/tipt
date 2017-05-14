@@ -412,6 +412,11 @@ def giveSuggestions(data):
             if item['Which racecourse?'] + ' ' + item['Race Time'] == match:
                 try:
                     predictions = predictions + item["Horse Name"] + item["Your recommendation text"]
+
+                    quick_replies = []
+                    reply = text_quick_reply(title="Ask a human to look", payload="r_human")
+                    quick_replies.append(reply)
+                    
                     print('recommendation: {}'.format(predictions))
                 except Exception as e:
                     print('give suggestion error: {}'.format(e))
