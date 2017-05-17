@@ -379,7 +379,7 @@ def showTimes(data):
 
         if len(replies) > 0:
             final_data = apiai_facebook_quick_reply(
-                "Today at 📍" + track + ". we have the following races. Select the race you want info for.",
+                "Today at 📍" + track + " we have the following races. Select the race you want info for.",
                 quick_replies=replies)
 
             return final_data
