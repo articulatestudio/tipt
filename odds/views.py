@@ -379,7 +379,7 @@ def showTimes(data):
 
         if len(replies) > 0:
             final_data = apiai_facebook_quick_reply(
-                "These are the next races at 📍" + track + ". Let me know which race you want info for.",
+                "Today at 📍" + track + ". we have the following races. Select the race you want info for.",
                 quick_replies=replies)
 
             return final_data
@@ -418,7 +418,7 @@ def giveSuggestions(data):
                     predictions = ""
 
         if predictions == "":
-            speech = "It looks a tough field to split. My tip in this race is to keep your money in your pocket!"
+            speech = "I don't see a great deal of value in this event and I would look elsewhere."
         else:
             speech = speech
             print('predictions: {}'.format(predictions))
