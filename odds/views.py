@@ -244,7 +244,7 @@ def processHorseRequest(parameters):
                 vendors.append(random_emoji(item['name']) + " " + item['name'] + " " + convert_dec_frac(item['odd']))
 
     if len(vendors) == 0:
-        speech = "I'm struggling with that one. It could be that the race has already started, the horse isn't running today or the betting hasn't opened yet. Let's try a:\n\n"
+        speech = "I'm struggling with that one. It could be that the race has already started, the horse isn't running today or the betting hasn't opened yet. It will take a minute but if you want we can do a:\n\n"
 
         quick_replies = []
         reply = text_quick_reply(title="Deep Search", payload="r_human")
