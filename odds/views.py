@@ -12,10 +12,8 @@ from odds.random_emoji import *
 betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
     {"subtitle": "Choose an option below", "title": "William Hill",
      "image_url": "https://williamhillplc.azureedge.net/cache/f/8/f/7/f/2/f8f7f24a88f4cd0246539fa2151143b6d8902366.png",
-     "item_url": "http://sports.williamhill.com/bet/en-gb/betting/y/9/Horse+Racing.html", "buttons": [
-        {"title": "Bet on Web", "type": "web_url",
-         "url": "http://sports.williamhill.com/bet/en-gb/betting/y/9/Horse+Racing.html"},
-        {"title": "Bet on App", "type": "web_url",
+     "item_url": "http://ads2.williamhill.com/redirect.aspx?pid=191315740&bid=1468061385&lpid=1139047953", "buttons": [
+        {"title": "Bet Now", "type": "web_url",
          "url": "http://sports.williamhill.com/bet/en-gb/betting/y/9/Horse+Racing.html"}]},
     {"subtitle": "Choose an option below", "title": "Paddy Power",
      "image_url": "https://pbs.twimg.com/profile_images/799595351984537600/V90FKR4J.jpg",
