@@ -10,7 +10,7 @@ from odds.mongo_handle import *
 from odds.random_emoji import *
 
 betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
-    {"subtitle": "Sign Up for an account with William Hill today using the promo code C30 and get £30 Free when you bet £10", "title": "William Hill",
+    {"subtitle": "💰💵 Sign Up with WillHill using the code C30 and get £30 Free when you bet £10", "title": "William Hill",
      "image_url": "https://williamhillplc.azureedge.net/cache/f/8/f/7/f/2/f8f7f24a88f4cd0246539fa2151143b6d8902366.png",
      "item_url": "http://ads2.williamhill.com/redirect.aspx?pid=191315740&bid=1468061385&lpid=1139047953", "buttons": [
         {"title": "Bet Now", "type": "web_url",
