@@ -10,13 +10,11 @@ from odds.mongo_handle import *
 from odds.random_emoji import *
 
 betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
-    {"subtitle": "Choose an option below", "title": "William Hill",
+    {"subtitle": "💰💵 Sign Up with WillHill using the code C30 and get £30 Free when you bet £10", "title": "William Hill",
      "image_url": "https://williamhillplc.azureedge.net/cache/f/8/f/7/f/2/f8f7f24a88f4cd0246539fa2151143b6d8902366.png",
-     "item_url": "http://sports.williamhill.com/bet/en-gb/betting/y/9/Horse+Racing.html", "buttons": [
-        {"title": "Bet on Web", "type": "web_url",
-         "url": "http://sports.williamhill.com/bet/en-gb/betting/y/9/Horse+Racing.html"},
-        {"title": "Bet on App", "type": "web_url",
-         "url": "http://sports.williamhill.com/bet/en-gb/betting/y/9/Horse+Racing.html"}]},
+     "item_url": "http://ads2.williamhill.com/redirect.aspx?pid=191315740&bid=1468061385&lpid=1139047953", "buttons": [
+        {"title": "Bet Now", "type": "web_url",
+         "url": "http://ads2.williamhill.com/redirect.aspx?pid=191315740&bid=1468061385&lpid=1139047953"}]},
     {"subtitle": "Choose an option below", "title": "Paddy Power",
      "image_url": "https://pbs.twimg.com/profile_images/799595351984537600/V90FKR4J.jpg",
      "item_url": "http://www.paddypower.com/racing/",
@@ -57,13 +55,7 @@ betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
 
 
 collections = mongo.get_collections(DATABASE_NAME)
-all_data = mongo.get_data(collections=collections)
-
-races_data = all_data['races_data']
-odds_data = all_data['odds_data']
-tournaments_data = all_data['tournaments']
-horses_data = all_data['horses_data']
-predicts_data = all_data['predicts_data']
+races_data, odds_data, tournaments_data, horses_data, predicts_data = mongo.get_data(collections=collections)
 
 
 # def update_data():
@@ -94,8 +86,10 @@ def replyhook(request):
 @csrf_exempt
 def webhook(request):
     if request.method == 'POST':
+        print("Data: len()=tournaments_data" + str(len(tournaments_data)))
         body_unicode = request.body.decode('utf-8')
         request_body = json.loads(body_unicode)
+        print("request body: " + str(body_unicode))
         res = action(request_body)
         print ("api-response: ")
         api_response = JsonResponse(res)
@@ -110,8 +104,8 @@ def get_current_time():
     """
     Get Current time
     """
-    print((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
-    iso_date = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
+    print((datetime.now(timezone.utc) + timedelta(hours=-24)).strftime("%Y%m%d%H%M"))
+    iso_date = (datetime.now(timezone.utc) + timedelta(hours=-24)).isoformat()
     print('iso_date: {}'.format(iso_date))
     date = ((datetime.now(timezone.utc) + timedelta(hours=1)).strftime("%Y%m%d%H%M"))
     year = date[:4]
@@ -219,11 +213,13 @@ def on_courses(current_time):
     """
     courses = []
     for item in tournaments_data:
-        if str(item['date']) <= str(current_time['iso_date']):
+        if str(item['date']) < str(current_time['iso_date']):
             continue
         elif item['name'] not in courses:
             courses.append(item['name'])
     return courses
+
+
 
 
 def processHorseRequest(parameters):
@@ -246,14 +242,13 @@ def processHorseRequest(parameters):
                 vendors.append(random_emoji(item['name']) + " " + item['name'] + " " + convert_dec_frac(item['odd']))
 
     if len(vendors) == 0:
-        speech = "Sorry I don’t recognise that horse name, perhaps its not running today or you made a typo. " \
-                 "Let me know which course you are looking for:\n\n"
+        speech = "Hmmm I'm struggling with that one. It could be that the race has already started, the horse isn't running today or the betting hasn't opened yet. Maybe I'm just not looking hard enough. It will take a minute but if you want we can do a:\n\n"
 
         quick_replies = []
+        reply = text_quick_reply(title="Deep Search", payload="r_human")
+        quick_replies.append(reply)
 
-        for course in courses:
-            reply = text_quick_reply(title=course, payload=course)
-            quick_replies.append(reply)
+
 
         final_data = apiai_facebook_quick_reply(text=speech, quick_replies=quick_replies)
 
@@ -351,7 +346,7 @@ def showTimes(data):
         track_id = filter(lambda item: item['name'] == track and str(item['date']) >= current_time['iso_date'], tournaments_data)[0]['tournament_id']
         print ('track_id: {}'.format(track_id))
     except Exception as e:
-        print ('Python 3 : {}'.format(e))
+        print ('Python 3 exception: {}'.format(e))
         try:
             track_id = next(filter(lambda item: item['name'] == track and str(item['date']) >= current_time['iso_date'], tournaments_data))['tournament_id']
         except Exception as e:
@@ -361,7 +356,7 @@ def showTimes(data):
     print('trackid: {}'.format(track_id))
 
     if track_id == '':
-        speech = "I don’t think there is any racing there today. There is racing at:\n\n"
+        speech = "Racing today comes from:\n\n"
 
         quick_replies = []
 
@@ -377,18 +372,18 @@ def showTimes(data):
 
             if item['tournament_id'] == track_id:
                 match = track + " " + item['time']
-                quick_reply = text_quick_reply(match, "get " + match)
+                quick_reply = text_quick_reply(match, "next-race-postback " + match)
                 replies.append(quick_reply)
 
         if len(replies) > 0:
             final_data = apiai_facebook_quick_reply(
-                "These are the next races at " + track + ". Select one of the races to get recommendations.",
+                "Today at 📍" + track + " we have the following races. Select the race you want info for.",
                 quick_replies=replies)
 
             return final_data
 
         else:
-            speech = "I don’t think there is any racing there today. There is racing at:\n\n"
+            speech = "I can see we have racing from:\n\n"
 
             quick_replies = []
 
@@ -402,7 +397,7 @@ def showTimes(data):
 
 
 def giveSuggestions(data):
-
+    horse_emoji = u"\U0001F40E"
     match = data['matches']
     print("match is " + match)
     print("predict_data: {} ".format(predicts_data))
@@ -414,7 +409,6 @@ def giveSuggestions(data):
             print('race: {}'.format(item['Which racecourse?']))
             if item['Which racecourse?'] + ' ' + item['Race Time'] == match:
                 try:
-                    predictions = item["Horse Name"] + " is my pick in the " + item["Race Time"] + " at " + item['Which racecourse?'] + "\n"
                     predictions = predictions + item["Your recommendation text"]
                     print('recommendation: {}'.format(predictions))
                 except Exception as e:
@@ -422,9 +416,9 @@ def giveSuggestions(data):
                     predictions = ""
 
         if predictions == "":
-            speech = "I could not find predictions for that race empty"
+            speech = "I don't see a great deal of value in this event and I would look elsewhere."
         else:
-            speech = speech + horse_emoji
+            speech = speech
             print('predictions: {}'.format(predictions))
 
             speech = speech + predictions + "\n"
@@ -457,7 +451,7 @@ def default_fallback():
 
 def action(data):
     parameters = data['result']['parameters']
-
+    print("action - parameters: " + str(parameters))
     if data['result']['metadata']['intentName'] == 'test':
         return processData(getnextgame())
     elif data['result']['action'] == 'HorseOdds':
