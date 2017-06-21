@@ -10,6 +10,12 @@ from odds.mongo_handle import *
 from odds.random_emoji import *
 
 betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
+    {"subtitle": "Choose an option below", "title": "Bet365",
+     "image_url": "https://pbs.twimg.com/profile_images/423124117655531520/hXb2Vjwb_400x400.png",
+     "item_url": "https://extra.bet365.com/promotions/horse-racing",
+     "buttons": [{"title": "Bet on Web", "type": "web_url", "url": "http://www.bet365.com/dl/~offer?affiliate=365_631194"},
+                 {"title": "Get £200 in Free Bets", "type": "web_url",
+                  "url": "http://www.bet365.com/dl/~offer?affiliate=365_631194"}]},
     {"subtitle": "💰💵 Sign Up with WillHill using the code C30 and get £30 Free when you bet £10", "title": "William Hill",
      "image_url": "https://williamhillplc.azureedge.net/cache/f/8/f/7/f/2/f8f7f24a88f4cd0246539fa2151143b6d8902366.png",
      "item_url": "http://ads2.williamhill.com/redirect.aspx?pid=191315740&bid=1468061385&lpid=1139047953", "buttons": [
@@ -20,12 +26,6 @@ betting_companies = {"facebook": {"attachment": {"payload": {"elements": [
      "item_url": "http://www.paddypower.com/racing/",
      "buttons": [{"title": "Bet on Web", "type": "web_url", "url": "http://www.paddypower.com/racing/"},
                  {"title": "Bet on App", "type": "web_url", "url": "http://www.paddypower.com/racing/"}]},
-    {"subtitle": "Choose an option below", "title": "Bet365",
-     "image_url": "https://pbs.twimg.com/profile_images/423124117655531520/hXb2Vjwb_400x400.png",
-     "item_url": "https://extra.bet365.com/promotions/horse-racing",
-     "buttons": [{"title": "Bet on Web", "type": "web_url", "url": "https://extra.bet365.com/promotions/horse-racing"},
-                 {"title": "Bet on App", "type": "web_url",
-                  "url": "https://extra.bet365.com/promotions/horse-racing"}]},
     {"subtitle": "Choose an option below", "title": "Coral",
      "image_url": "http://www.slotssons.com/uk/wp-content/uploads/2016/02/coral-logo.png",
      "item_url": "http://sports.coral.co.uk/horse-racing",
